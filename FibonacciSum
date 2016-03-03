@@ -1,0 +1,60 @@
+//The program calculates the sum of all even elements of the Fibonacci sequence below 1000.
+
+class Fibonacci{
+	private int limit;
+
+	public Fibonacci(int limit) {
+		this.limit = limit;
+	}
+	
+	public int generateFibonacci(int i){
+		if(i==0){
+			return 0;
+		}	
+		else if(i==1){
+			return 1;
+		}	
+		else{
+			return generateFibonacci(i-1)+generateFibonacci(i-2);
+		}
+	}
+	public boolean checkEven(int fibNumber){
+		if(fibNumber%2==0){
+			return true;
+		}	
+		else{ 
+			return false;
+		}
+	}
+	
+	public void findSum(){
+		int fibNumber=0,sum=0;
+		if(limit>1)	{ 
+			for(int i=0;;i++){ 					
+			fibNumber=generateFibonacci(i);
+			//check if the Fibonacci number generated is below 'limit'(=1000 here)and is even
+			if(fibNumber>limit){						
+				break;
+			}	
+			else
+				if(checkEven(fibNumber)==true){
+					sum+=fibNumber;
+				}
+		  }
+		}
+		printNumber(sum);
+	}
+	
+	public void printNumber(int number){
+		System.out.println("Sum of all even Fibonacci numbers below "+limit+" is "+number);
+	}
+}
+
+class FibonacciSum{
+	public static final int LIMIT=1000;
+	public static void main(String[] args){
+		Fibonacci fibonacci=new Fibonacci(LIMIT);
+		fibonacci.findSum();
+	}
+	
+}
